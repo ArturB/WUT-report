@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.2.7)  11 MAR 2019 23:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.2.7)  11 MAR 2019 23:47
 entering extended mode
 **./raport.tex
 (raport.tex
@@ -1226,10 +1226,10 @@ Package rerunfilecheck Info: File `raport.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 60.
  ) 
 Here is how much of TeX's memory you used:
- 22731 strings out of 492946
- 386449 string characters out of 3135528
- 758197 words of memory out of 3000000
- 26188 multiletter control sequences out of 15000+200000
+ 22735 strings out of 492946
+ 386506 string characters out of 3135528
+ 758251 words of memory out of 3000000
+ 26192 multiletter control sequences out of 15000+200000
  636458 words of font info for 215 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  47i,11n,77p,364b,566s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1239,7 +1239,7 @@ m Files/MiKTeX 2.9/fonts/type1/public/fourier/fourier-ms.pfb><C:/Program Files/
 MiKTeX 2.9/fonts/type1/adobe/utopia/putb8a.pfb><C:/Program Files/MiKTeX 2.9/fon
 ts/type1/adobe/utopia/putr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/adobe
 /utopia/putri8a.pfb>
-Output written on raport.pdf (2 pages, 1113577 bytes).
+Output written on raport.pdf (2 pages, 1114504 bytes).
 PDF statistics:
  91 PDF objects out of 1000 (max. 8388607)
  8 named destinations out of 1000 (max. 500000)

@@ -1,0 +1,54 @@
+# *************************
+# WUT-Report build targets
+# *************************
+
+import filecmp, os, re
+from threading import Thread
+
+TARGETS = COMMAND_LINE_TARGETS
+TEXFLAGS = '-synctex=1 --interaction=nonstopmode'
+
+# --------------
+# Build targets
+# --------------
+
+# Pdflatex
+def target_pdf():
+    os.system("latexmk -pdf -output-directory=build/pdflatex " +
+              TEXFLAGS + " raport.tex")
+    os.system("cp -v build/pdflatex/raport.pdf .")
+
+# Lualatex
+def target_lua():
+    os.system("latexmk -pdflua -output-directory=build/lualatex " +
+              TEXFLAGS + " raport.tex")
+    os.system("cp -v build/lualatex/raport.pdf .")
+
+# Clean
+def target_clean():
+    os.system('rm -rfv build/pdflatex')
+    os.system('rm -rfv build/lualatex')
+
+# --------------------------
+# Process specified targets
+# --------------------------
+
+if not TARGETS:
+    print("Available targets: all clean docker lua pdf test zip")
+    Exit(1)
+
+for target in TARGETS:
+    if target == 'all':
+        target_pdf()
+        target_lua()
+    elif target == 'pdf':
+        target_pdf()
+    elif target == 'lua':
+        target_lua()
+    elif target == 'clean':
+        target_clean()
+    else:
+        print(target + ': unknown target')
+        Exit(1)
+
+Exit(0)

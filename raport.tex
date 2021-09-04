@@ -1,60 +1,124 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%   Simple and elegant academic report    %
-%   Copyright by Artur M. Brodzki, 2019   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-----------------------------------------------
+%  Simple and elegant academic report
+%  Copyleft by Artur M. Brodzki, 2019-2021
+%-----------------------------------------------
 
-\documentclass{eiti-raport}
+\documentclass[
+    hyphenation=true % Hyphenation turn on/off
+]{src/wut-report}
 
-\usepackage[
-	english,
-	polish
-]{babel}
-\usepackage{polski}
-
-%------------------------------------------
+\graphicspath{img} % Katalog z obrazkami.
+\langpol % Wybór języka: \langpol, \langeng
 
 \begin{document}
 
-\author{Artur M. Brodzki}
-\date{\today}
+%----------------
+% Tytuł raportu
+%----------------
+
+\author{Imię Nazwisko 1, Imię Nazwisko 2}
 \subject{Nazwa przedmiotu}
 \title{Tytuł raportu}
-
-\pagenumbering{arabic}
+\date{\today}
 \maketitle
 
-%------------------------------------------
-% MAIN CONTENTS
-%------------------------------------------
+% Nagłówki: domyślnie autorzy i przedmiot
+% Komendy z'the' odwołują się do autora i tytułu
+% ustawionych powyżej
+\leftheader{\theauthor}
+\rightheader{\thesubject}
 
-\begin{multicols}{2}
+%------------
+% Zawartość
+%------------
 
 \section{Wstęp} \label{sec:intro}
-\lipsum[1-2]
+\lipsum[1]
+
+% Przykładowy obrazek
+\begin{figure}[!h]
+	% Wyrównanie obrazka, szerokość i plik
+    % Zamiast width można też użyć height, etc.
+	\centering \includegraphics[width=0.4\linewidth]{img/logopw.png}
+	% Podpis umieszczamy pod obrazkiem
+    % znacznik \caption służy również do wygenerowania numeru obrazka
+	\caption{Tradycyjne godło Politechniki Warszawskiej.}
+	% \label pozwala odwołać się do obrazka w innych miejscach za pomocą \ref
+    % odwołanie \ref renderuje się jako numer obrazka,
+    % dlatego zawsze najpierw używaj \caption a potem \label
+	\label{fig:logo}
+\end{figure}
+
+\lipsum[2]
+
+% Lista punktowana
+% Parametr label ustawia symbol punktora
+\begin{itemize}
+    \item Item 1:
+    \begin{itemize}[label=---]
+        \item item 1.1;
+        \item item 1.2;
+    \end{itemize}
+    \item Item 2;
+    \item Item 3.
+\end{itemize}
+
+\lipsum[3]
+
+% Lista numerowana w formacie 1.a).ii
+% Tutaj również można stosować \label
+\begin{enumerate}
+    \item Item 1:
+    \begin{enumerate}
+        \item item 1.1;
+        \begin{enumerate}
+            \item item 1.2.1;
+        \end{enumerate}
+        \item item 1.2;
+    \end{enumerate}
+    \item Item 2.
+\end{enumerate}
 
 \section{Rozdział 2} \label{sec:2}
 \lipsum[3]
-\begin{center}
-	\label{fig:anzelm}
-	\includegraphics[width=0.5\linewidth]{img/anzelm.PNG}
-	\captionof{figure}{Anzelm z Canterbury.}
-\end{center}
-\lipsum[4]
-\begin{align*}
-E & = m c^2 \\ 
+% Przykładowe równanie
+% align oznacza wyrównanie kolejnych wierszy do '&'
+% '&' służy tylko do wyrównania i nie jest renderowany
+% Równanie bez numeru to {align*}
+\begin{align}
+E & = m c^2 \\
 y & = a x^2 + bx + c
-\end{align*}
-\lipsum[5]
+\end{align}
 
-\section{Podsumowanie} \label{sec:summary}
+% Przypis dolny \footnote
+Lorem ipsum dolor sit amet\footnote{Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.}, consectetur adipiscing elit. \lipsum[4]
+
+% Przykładowa tabela: wyśrodkowana i renderowana
+% w miejscu wstawienia: !h = !h[ere]
+% Domyślnie tabele trafiają na górę strony
+\begin{table}[!h] \centering
+    % Podpis tabeli umieszczamy od góry
+    \caption{Przykładowa tabela.}
+    \label{tab:tabela1}
+
+    % Tabela z trzema kolumnami:
+    % dwie wyrównanie do środka [c], a ostatnia do prawej [r]
+    % szerokość kolumn automatyczna (równa szerokości tekstu)
+    \begin{tabular}{| c | c | r |} \hline
+        Kolumna 1       & Kolumna 2 & Liczba \\ \hline\hline
+        cell1           & cell2     & 60     \\ \hline
+        cell4           & cell5     & 43     \\ \hline
+        cell7           & cell8     & 20,45  \\ \hline
+        % Komórka o szerokości dwóch kolumn, wyrównana do prawej
+        % Przypisy dolne w tabelach wstawiamy przez \tablefootnote
+        \multicolumn{2}{|r|}{Suma\tablefootnote{Table footnote.}} & 123,45 \\ \hline
+    \end{tabular}
+
+\end{table}
+
 \lipsum[6]
 
-\section*{Literaura}
+\section{Podsumowanie} \label{sec:summary}
+\lipsum[7]
 
-\noindent [Anderson, 1990] Anderson, C. A. (1990). Some emendations of G\"odel’s ontological proof. \textit{Faith and Philosophy}, str. 291–303. Dostęp zdalny (PDF): \url{https://somewebsite.com/ontological-proof22.pdf}  
-\\ \\
-\noindent [Anderson, 1996] Anderson, C. A.; Geettings, M. (1996). G\"odel’s ontological proof revisited. \textit{Lecture Notes in Logic}, str. 167–172. Dostęp zdalny (PDF): \url{https://projecteuclid.org/download/pdf_1/euclid.lnl/1235417020}
-
-
-\end{multicols}
-\end{document}
+\end{document} % Dobranoc.

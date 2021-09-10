@@ -15,14 +15,14 @@ TEXFLAGS = '-synctex=1 --interaction=nonstopmode'
 # Pdflatex
 def target_pdf():
     os.system("latexmk -pdf -output-directory=build/pdflatex " +
-              TEXFLAGS + " raport.tex")
-    os.system("cp -v build/pdflatex/raport.pdf .")
+              TEXFLAGS + " main.tex")
+    os.system("cp -v build/pdflatex/main.pdf .")
 
 # Lualatex
 def target_lua():
     os.system("latexmk -pdflua -output-directory=build/lualatex " +
-              TEXFLAGS + " raport.tex")
-    os.system("cp -v build/lualatex/raport.pdf .")
+              TEXFLAGS + " main.tex")
+    os.system("cp -v build/lualatex/main.pdf .")
 
 # Clean
 def target_clean():

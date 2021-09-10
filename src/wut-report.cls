@@ -17,11 +17,10 @@
     family=wut/wut-report.cls,
     prefix=wut
 }
-\DeclareStringOption[25mm]{left}
-\DeclareStringOption[25mm]{right}
-\DeclareStringOption[25mm]{top}
-\DeclareStringOption[25mm]{bottom}
 \DeclareStringOption[3mm]{footnoteindent}
+\DeclareBoolOption[true]{showauthor}
+\DeclareBoolOption[true]{showdate}
+\DeclareBoolOption[true]{showsubject}
 \DeclareBoolOption[true]{hyphenation}
 \ProcessKeyvalOptions*
 % Hyphenation
@@ -78,10 +77,10 @@
 % A4 paper and margins
 \RequirePackage[
     a4paper,
-    left=\wutleft,
-    right=\wutright,
-    top=\wuttop,
-    bottom=\wutbottom
+    left=25mm,
+    right=25mm,
+    top=25mm,
+    bottom=25mm
 ]{geometry}
 % Clickable hyperlinks
 \RequirePackage{hyperref}
@@ -134,10 +133,11 @@
     \usepackage[polish]{babel}
     \usepackage{csquotes}
 
+    \newtheorem{assumption}{Założenie}
+    \newtheorem{axiom}{Aksjomat}
+    \newtheorem{corollary}{Wniosek}
+    \newtheorem{definition}{Definicja}
 	\newtheorem{theorem}{Twierdzenie}
-	\newtheorem{definition}{Definicja}
-	\newtheorem{axiom}{Aksjomat}
-	\newtheorem{assumption}{Założenie}
 	\AtBeginDocument{
 		\renewcommand{\tablename}{Tabela}
 	}
@@ -147,10 +147,11 @@
     \usepackage[english]{babel}
     \usepackage{csquotes}
 
+    \newtheorem{assumption}{Assumption}
+    \newtheorem{axiom}{Axiom}
+    \newtheorem{corollary}{Corollary}
+    \newtheorem{definition}{Definition}
 	\newtheorem{theorem}{Theorem}
-	\newtheorem{definition}{Definition}
-	\newtheorem{axiom}{Axiom}
-	\newtheorem{assumption}{Assumption}
 	\AtBeginDocument{
 		\renewcommand{\tablename}{Table}
 	}
@@ -204,15 +205,21 @@
 \renewcommand{\maketitle}{
     \thispagestyle{plain}
     \begin{center}
-        \large \@author \\ \vspace{5mm}
-        \Large \@subject \\ \vspace{2mm}
+        \ifwutshowauthor
+            \large \@author \\ \vspace{5mm}
+        \fi
+        \ifwutshowsubject
+            \Large \@subject \\ \vspace{2mm}
+        \fi
 
         \vspace{-4mm} \rule{\linewidth}{1pt} \\
         \vspace{1mm} \LARGE \textbf{\MakeUppercase{\@title}} \\
         \vspace{-3mm} \rule{\linewidth}{1pt}
 
         \vspace{5mm}
-        \normalsize \@date \\
+        \ifwutshowdate
+            \normalsize \@date \\
+        \fi
         \pagenumbering{arabic}
     \end{center}
 }
